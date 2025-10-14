@@ -70,10 +70,10 @@ public class BasicOmniOpMode_Linearyoyoed extends LinearOpMode {
 
     // Declare OpMode members for each of the 4 motors.
     private ElapsedTime runtime = new ElapsedTime();
-    private DcMotor M1 = null;
-    private DcMotor m2 = null;
-    private DcMotor frontRightDrive = null;
-    private DcMotor backRightDrive = null;
+    private DcMotor fl = null;
+    private DcMotor fr = null;
+    private DcMotor rl = null;
+    private DcMotor rr = null;
     private CRServo Servo1 = null;
 
     @Override
@@ -81,8 +81,10 @@ public class BasicOmniOpMode_Linearyoyoed extends LinearOpMode {
 
         // Initialize the hardware variables. Note that the strings used here must correspond
         // to the names assigned during the robot configuration step on the DS or RC devices.
-        M1 = hardwareMap.get(DcMotor.class, "M1");
-        m2 = hardwareMap.get(DcMotor.class, "m2");
+        fr = hardwareMap.get(DcMotor.class, "FR");
+        fl = hardwareMap.get(DcMotor.class, "FL");
+        rl = hardwareMap.get(DcMotor.class, "RL");
+        rr = hardwareMap.get(DcMotor.class, "RR");
         Servo1 = hardwareMap.get(CRServo.class, "s0");
 
 
@@ -107,19 +109,20 @@ public class BasicOmniOpMode_Linearyoyoed extends LinearOpMode {
 
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
-            double max;
+
 
             // POV Mode uses left joystick to go forward & strafe, and right joystick to rotate.
-            double axial   = -gamepad1.left_stick_y;  // Note: pushing stick forward gives negative value
-            double lateral =  gamepad1.left_stick_x;
-            double yaw     =  gamepad1.right_stick_x;
+            double ly   = -gamepad1.left_stick_y;  // Note: pushing stick forward gives negative value
+            double lx =  gamepad1.left_stick_x;
+            double rx =  gamepad1.right_stick_x;
+            double ry =  gamepad1.right_stick_y;
 
             // Combine the joystick requests for each axis-motion to determine each wheel's power.
             // Set up a variable for each drive wheel to save the power level for telemetry.
-            double p1  = yaw;
-            double p2 = lateral;
-            double p3 = 1;
-            double s1  = axial;
+            double pfl  = (ly-lx);
+            double pfr = ly+lx;
+            double pbl = (-ly)+lx;
+            double pbr  = (-ly)-lx;
 
             // Normalize the values so no wheel power exceeds 100%
             // This ensures that the robot maintains the desired motion.
@@ -145,15 +148,16 @@ public class BasicOmniOpMode_Linearyoyoed extends LinearOpMode {
             */
 
             // Send calculated power to wheels
-            M1.setPower(p1);
-            m2.setPower(p2);
-            Servo1.setPower(s1);
+            fl.setPower(pfl);
+            fr.setPower(pfr);
+            rl.setPower(pbl);
+            rr.setPower(pbr);
 
 
             // Show the elapsed game time and wheel power.
             telemetry.addData("Status", "Run Time: " + runtime.toString());
-            telemetry.addData("Front left/Right", "%4.2f, %4.2f", p1, p2);
-            telemetry.addData("Back  left/Right", "%4.2f, %4.2f", s1, p3);
+            telemetry.addData("Front left/Right", "%4.2f, %4.2f", pfl, pfr);
+            telemetry.addData("Back  left/Right", "%4.2f, %4.2f", pbl, pbr);
             telemetry.update();
         }
     }}
