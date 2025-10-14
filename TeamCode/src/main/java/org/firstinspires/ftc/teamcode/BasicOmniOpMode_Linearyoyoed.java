@@ -85,7 +85,7 @@ public class BasicOmniOpMode_Linearyoyoed extends LinearOpMode {
         fl = hardwareMap.get(DcMotor.class, "FL");
         rl = hardwareMap.get(DcMotor.class, "RL");
         rr = hardwareMap.get(DcMotor.class, "RR");
-        Servo1 = hardwareMap.get(CRServo.class, "s0");
+
 
 
         // ########################################################################################
