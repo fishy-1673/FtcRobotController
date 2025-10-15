@@ -29,7 +29,6 @@
 
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.CRServo;
@@ -112,42 +111,28 @@ public class BasicOmniOpMode_Linearyoyoed extends LinearOpMode {
 
 
             // POV Mode uses left joystick to go forward & strafe, and right joystick to rotate.
-            double ly   = -gamepad1.left_stick_y;  // Note: pushing stick forward gives negative value
-            double lx =  gamepad1.left_stick_x;
-            double rx =  gamepad1.right_stick_x;
-            double ry =  gamepad1.right_stick_y;
+            double drive   = -gamepad1.left_stick_y;  // Note: pushing stick forward gives negative value
+            double strafe =  gamepad1.left_stick_x;
+            double yaw =  gamepad1.right_stick_x;
+            double ry =  -gamepad1.right_stick_y;
 
-            // Combine the joystick requests for each axis-motion to determine each wheel's power.
-            // Set up a variable for each drive wheel to save the power level for telemetry.
-            double pfl  = (ly-lx);
-            double pfr = ly+lx;
-            double pbl = (-ly)+lx;
-            double pbr  = (-ly)-lx;
+            double pfl = -(drive + strafe + yaw);
+            double pfr = drive - strafe - yaw;
+            double pbl = -(drive - strafe + yaw);
+            double pbr = drive + strafe - yaw;
+            double max;
 
-            // Normalize the values so no wheel power exceeds 100%
-            // This ensures that the robot maintains the desired motion.
+            // find maximum value
+            max = Math.max(Math.abs(pfl), Math.abs(pfr));
+            max = Math.max(max, Math.abs(pbl));
+            max = Math.max(max, Math.abs(pbr));
 
-
-
-
-            // This is test code:
-            //
-            // Uncomment the following code to test your motor directions.
-            // Each button should make the corresponding motor run FORWARD.
-            //   1) First get all the motors to take to correct positions on the robot
-            //      by adjusting your Robot Configuration if necessary.
-            //   2) Then make sure they run in the correct direction by modifying the
-            //      the setDirection() calls above.
-            // Once the correct motors move in the correct direction re-comment this code.
-
-            /*
-            frontLeftPower  = gamepad1.x ? 1.0 : 0.0;  // X gamepad
-            backLeftPower   = gamepad1.a ? 1.0 : 0.0;  // A gamepad
-            frontRightPower = gamepad1.y ? 1.0 : 0.0;  // Y gamepad
-            backRightPower  = gamepad1.b ? 1.0 : 0.0;  // B gamepad
-            */
-
-            // Send calculated power to wheels
+            if (max > 1.0) {
+                pfl /= max;
+                pfr /= max;
+                pbl /= max;
+                pbr /= max;
+            }
             fl.setPower(pfl);
             fr.setPower(pfr);
             rl.setPower(pbl);
