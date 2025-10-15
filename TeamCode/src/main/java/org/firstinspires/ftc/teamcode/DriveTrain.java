@@ -74,46 +74,50 @@ public class DriveTrain  {
         FLD = hardwareMap.get(DcMotor.class, "FL");
         BLD = hardwareMap.get(DcMotor.class, "RL");
         FRD = hardwareMap.get(DcMotor.class, "FR");
-        BRD = hardwareMap.get(DcMotor.class, "RR")
+        BRD = hardwareMap.get(DcMotor.class, "RR");
 
         FLD.setDirection(DcMotor.Direction.FORWARD);
         BLD.setDirection(DcMotor.Direction.REVERSE);
         FRD.setDirection(DcMotor.Direction.REVERSE);
         BRD.setDirection(DcMotor.Direction.FORWARD);
-
-        // run until the end of the match (driver presses STOP)
-
-
-            // Combine the joystick requests for each axis-motion to determine each wheel's power.
-            // Set up a variable for each drive wheel to save the power level for telemetry.
-            double frontLeftPower  = axial + lateral + yaw;
-            double frontRightPower = axial - lateral - yaw;
-            double backLeftPower   = axial - lateral + yaw;
-            double backRightPower  = axial + lateral - yaw;
-            double max;
-            // Normalize the values so no wheel power exceeds 100%
-            // This ensures that the robot maintains the desired motion.
-            max = Math.max(Math.abs(frontLeftPower), Math.abs(frontRightPower));
-            max = Math.max(max, Math.abs(backLeftPower));
-            max = Math.max(max, Math.abs(backRightPower));
-
-            if (max > 1.0) {
-                frontLeftPower  /= max;
-                frontRightPower /= max;
-                backLeftPower   /= max;
-                backRightPower  /= max;
-            }
+        double frontLeftPower = 0;
+        double frontRightPower = 0;
+        double backLeftPower = 0;
+        double backRightPower = 0;
+    }
 
 
-            FLD.setPower(frontLeftPower);
-            FRD.setPower(frontRightPower);
-            BLD.setPower(backLeftPower);
-            BRD.setPower(backRightPower);
+    public void Drive(double drive, double strafe, double yaw) {
+        // Combine the joystick requests for each axis-motion to determine each wheel's power.
+        // Set up a variable for each drive wheel to save the power level for telemetry.
+        frontLeftPower = drive + strafe + yaw;
+        frontRightPower = drive - strafe - yaw;
+        backLeftPower = drive - strafe + yaw;
+        backRightPower = drive + strafe - yaw;
+        double max;
 
-            // Show the elapsed game time and wheel power.
-            telemetry.addData("Status", "Run Time: " + runtime.toString());
-            telemetry.addData("Front left/Right", "%4.2f, %4.2f", frontLeftPower, frontRightPower);
-            telemetry.addData("Back  left/Right", "%4.2f, %4.2f", backLeftPower, backRightPower);
-            telemetry.update();
+        // find maximum value
+        max = Math.max(Math.abs(frontLeftPower), Math.abs(frontRightPower));
+        max = Math.max(max, Math.abs(backLeftPower));
+        max = Math.max(max, Math.abs(backRightPower));
 
-    }}
+        if (max > 1.0) {
+            frontLeftPower /= max;
+            frontRightPower /= max;
+            backLeftPower /= max;
+            backRightPower /= max;
+        }
+
+
+        FLD.setPower(frontLeftPower);
+        FRD.setPower(frontRightPower);
+        BLD.setPower(backLeftPower);
+        BRD.setPower(backRightPower);
+    }
+    public String getTel() {
+        telemetry.addData("Front left/Right", "%4.2f, %4.2f", frontLeftPower, frontRightPower);
+        telemetry.addData("Back  left/Right", "%4.2f, %4.2f", backLeftPower, backRightPower);
+        telemetry.update();
+    }
+
+    }
