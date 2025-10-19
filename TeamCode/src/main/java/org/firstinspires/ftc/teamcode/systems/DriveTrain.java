@@ -22,9 +22,9 @@ public class DriveTrain {
         FRD = hardwareMap.get(DcMotor.class, "FR");
         BRD = hardwareMap.get(DcMotor.class, "RR");
 
-        FLD.setDirection(DcMotor.Direction.FORWARD);
+        FLD.setDirection(DcMotor.Direction.REVERSE);
         BLD.setDirection(DcMotor.Direction.REVERSE);
-        FRD.setDirection(DcMotor.Direction.REVERSE);
+        FRD.setDirection(DcMotor.Direction.FORWARD);
         BRD.setDirection(DcMotor.Direction.FORWARD);
     }
 
