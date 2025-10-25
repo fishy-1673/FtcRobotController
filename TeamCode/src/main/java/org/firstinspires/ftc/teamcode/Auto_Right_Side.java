@@ -57,9 +57,9 @@ import org.firstinspires.ftc.teamcode.systems.Launcher;
  * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list
  */
 
-@Autonomous(name="Robot: Auto Drive By Time", group="Robot")
+@Autonomous(name="Auto right side", group="Robot")
 
-public class RobotAutoDriveByTime_Linear extends LinearOpMode {
+public class Auto_Right_Side extends LinearOpMode {
 
     /* Declare OpMode members. */
 
@@ -130,7 +130,7 @@ public class RobotAutoDriveByTime_Linear extends LinearOpMode {
         }
         runtime.reset();
         Shoot.shoot(true);
-        while (opModeIsActive() && (runtime.seconds() < 0.5)) {
+        while (opModeIsActive() && (runtime.seconds() < 1.5)) {
 
             telemetry.addData("shooting", "Leg 2: %4.1f S Elapsed", runtime.seconds());
             telemetry.update();
