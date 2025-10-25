@@ -1,4 +1,4 @@
-//Version 25-26 1.2.2
+//Version 25-26 1.3.2
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -45,7 +45,7 @@ public class OmniDrive extends LinearOpMode {
                 unlockedLT = !unlockedLT;
             }
             Shoot.speed(SP);
-
+            Shoot.shoot(gamepad1.right_trigger > 0);
             // Show the elapsed game time and wheel power.
             telemetry.addData("Status", "Run Time: " + runtime.toString());
             telemetry.addLine(Omni.getTel() + " unlocked LT: " + unlockedLT + Shoot.getTel());

@@ -1,23 +1,28 @@
-//Version 25-26 1.2.2
+//Version 25-26 1.4.3
 package org.firstinspires.ftc.teamcode.systems;
 
 
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class Launcher {
 
 
     private DcMotor S1;
-    private DcMotor S2;
+
+    private CRServo LF;
+    private CRServo RF;
+    private String SS = "";
     private double SP = 0;
     public Launcher(HardwareMap hardwareMap) {
         S1 = hardwareMap.get(DcMotor.class, "S1");
-        S2 = hardwareMap.get(DcMotor.class, "S2");
 
+        RF = hardwareMap.get(CRServo.class, "RF");
+        LF = hardwareMap.get(CRServo.class, "LF");
 
-        S1.setDirection(DcMotor.Direction.FORWARD);
-        S2.setDirection(DcMotor.Direction.REVERSE);
+        S1.setDirection(DcMotor.Direction.REVERSE);
 
     }
 
@@ -27,11 +32,23 @@ public class Launcher {
         // Set up a variable for each drive wheel to save the power level for telemetry.
         SP=s;
         S1.setPower(SP);
-        S2.setPower(SP);
+
 
     }
+    public void shoot(boolean t){
+        if (t){
+            LF.setPower(-1);
+            RF.setPower(-1);
+            SS = "Feeding";
+        }
+        else{
+            LF.setPower(0);
+            RF.setPower(0);
+            SS = "Standby";
+        }
+    }
     public String getTel() {
-        return (" Launcher power: " + SP );
+        return (" Launcher power: " + SP  + " Shoot state: " + SS);
     }
 
     }
