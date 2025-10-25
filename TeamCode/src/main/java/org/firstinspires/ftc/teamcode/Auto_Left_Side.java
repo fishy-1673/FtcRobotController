@@ -96,7 +96,7 @@ public class Auto_Left_Side extends LinearOpMode {
 
         runtime.reset();
         Shoot.shoot(true);
-        while (opModeIsActive() && (runtime.seconds() < 0.2)) {
+        while (opModeIsActive() && (runtime.seconds() < 0.27)) {
 
             telemetry.addData("shooting", "Leg 2: %4.1f S Elapsed", runtime.seconds());
             telemetry.update();
