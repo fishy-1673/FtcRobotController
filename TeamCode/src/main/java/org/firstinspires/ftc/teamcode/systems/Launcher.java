@@ -1,4 +1,4 @@
-//Version 25-26 1.4.3
+//Version 25-26 1.4.5
 package org.firstinspires.ftc.teamcode.systems;
 
 
@@ -38,7 +38,7 @@ public class Launcher {
     public void shoot(boolean t){
         if (t){
             LF.setPower(-1);
-            RF.setPower(-1);
+            RF.setPower(1);
             SS = "Feeding";
         }
         else{
