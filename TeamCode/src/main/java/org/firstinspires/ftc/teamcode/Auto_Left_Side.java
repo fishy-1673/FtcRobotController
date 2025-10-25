@@ -96,7 +96,7 @@ public class Auto_Left_Side extends LinearOpMode {
 
         runtime.reset();
         Shoot.shoot(true);
-        while (opModeIsActive() && (runtime.seconds() < 0.5)) {
+        while (opModeIsActive() && (runtime.seconds() < 0.2)) {
 
             telemetry.addData("shooting", "Leg 2: %4.1f S Elapsed", runtime.seconds());
             telemetry.update();
@@ -107,13 +107,13 @@ public class Auto_Left_Side extends LinearOpMode {
         // Step 3:  Drive Backward for 1 Second
 
         runtime.reset();
-        while (opModeIsActive() && (runtime.seconds() < 1.5)) {
+        while (opModeIsActive() && (runtime.seconds() < 2.5)) {
             telemetry.addData("resetttinbg", "Leg 3: %4.1f S Elapsed", runtime.seconds());
             telemetry.update();
         }
         runtime.reset();
         Shoot.shoot(true);
-        while (opModeIsActive() && (runtime.seconds() < 0.5)) {
+        while (opModeIsActive() && (runtime.seconds() < 0.2)) {
 
             telemetry.addData("shooting", "Leg 2: %4.1f S Elapsed", runtime.seconds());
             telemetry.update();
@@ -124,13 +124,13 @@ public class Auto_Left_Side extends LinearOpMode {
         // Step 3:  Drive Backward for 1 Second
 
         runtime.reset();
-        while (opModeIsActive() && (runtime.seconds() < 1.5)) {
+        while (opModeIsActive() && (runtime.seconds() < 2.5)) {
             telemetry.addData("resetttinbg", "Leg 3: %4.1f S Elapsed", runtime.seconds());
             telemetry.update();
         }
         runtime.reset();
         Shoot.shoot(true);
-        while (opModeIsActive() && (runtime.seconds() < 1.5)) {
+        while (opModeIsActive() && (runtime.seconds() < 2.5)) {
 
             telemetry.addData("shooting", "Leg 2: %4.1f S Elapsed", runtime.seconds());
             telemetry.update();
