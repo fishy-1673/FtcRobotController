@@ -1,4 +1,4 @@
-//Version 25-26 1.4.5
+//Version 25-26 1.5.5
 package org.firstinspires.ftc.teamcode.systems;
 
 
@@ -11,6 +11,7 @@ public class Launcher {
 
 
     private DcMotor S1;
+    private DcMotor S2;
 
     private CRServo LF;
     private CRServo RF;
@@ -18,12 +19,12 @@ public class Launcher {
     private double SP = 0;
     public Launcher(HardwareMap hardwareMap) {
         S1 = hardwareMap.get(DcMotor.class, "S1");
-
+        S2 = hardwareMap.get(DcMotor.class, "S2");
         RF = hardwareMap.get(CRServo.class, "RF");
         LF = hardwareMap.get(CRServo.class, "LF");
 
         S1.setDirection(DcMotor.Direction.REVERSE);
-
+        S2.setDirection(DcMotorSimple.Direction.FORWARD);
     }
 
 
@@ -32,6 +33,7 @@ public class Launcher {
         // Set up a variable for each drive wheel to save the power level for telemetry.
         SP=s;
         S1.setPower(SP);
+        S2.setPower(SP*0.67);
 
 
     }
