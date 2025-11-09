@@ -1,4 +1,4 @@
-//Version 25-26 1.3.4
+//Version 25-26 1.4.0
 package org.firstinspires.ftc.teamcode.systems;
 
 
@@ -32,8 +32,6 @@ public class DriveTrain {
     public void Drive(double drive, double strafe, double yaw) {
         // Combine the joystick requests for each axis-motion to determine each wheel's power.
         // Set up a variable for each drive wheel to save the power level for telemetry.
-        drive = -drive;
-        strafe= -strafe;
         frontLeftPower = drive + strafe + yaw;
         frontRightPower = drive - strafe - yaw;
         backLeftPower = drive - strafe + yaw;
