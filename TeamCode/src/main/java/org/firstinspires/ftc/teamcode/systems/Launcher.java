@@ -40,7 +40,7 @@ public class Launcher {
     public void shoot(boolean t){
         if (t){
             LF.setPower(-1);
-            RF.setPower(1);
+            RF.setPower(-1);
             SS = "Feeding";
         }
         else{
