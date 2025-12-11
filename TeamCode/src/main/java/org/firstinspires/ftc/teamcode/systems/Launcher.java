@@ -15,7 +15,7 @@ public class Launcher {
 
     private CRServo LF;
     private CRServo RF;
-    private String SS = "";
+    private String FS = "";
     private double SP = 0;
     public Launcher(HardwareMap hardwareMap) {
         S1 = hardwareMap.get(DcMotor.class, "S1");
@@ -37,20 +37,19 @@ public class Launcher {
 
 
     }
-    public void shoot(boolean t){
-        if (t){
-            LF.setPower(-1);
-            RF.setPower(-1);
-            SS = "Feeding";
-        }
-        else{
-            LF.setPower(0);
-            RF.setPower(0);
-            SS = "Standby";
+    public void Feed(double s){
+        LF.setPower(s);
+        RF.setPower(s);
+        if (s>0){
+            FS = "Feeding";
+        } else if (s<0) {
+            FS = "Antifeeding";
+        } else{
+            FS = "Standby";
         }
     }
     public String getTel() {
-        return (" Launcher power: " + SP  + " Shoot state: " + SS);
+        return (" Launcher power: " + SP  + " Feeding state: " + FS);
     }
 
     }

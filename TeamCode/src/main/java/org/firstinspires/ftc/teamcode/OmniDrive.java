@@ -16,7 +16,9 @@ public class OmniDrive extends LinearOpMode {
     private ElapsedTime runtime = new ElapsedTime();
 
     boolean unlockedLT = true;
+    boolean islockDP = false;
     double SP;
+    double FS;
 
     @Override
     public void runOpMode() {
@@ -40,12 +42,19 @@ public class OmniDrive extends LinearOpMode {
             Omni.Drive(ly,lx,rx);
             if(unlockedLT){
                 SP = lt;
+                Shoot.speed(SP);
             }
             if (gamepad1.yWasPressed()){
                 unlockedLT = !unlockedLT;
             }
-            Shoot.speed(SP);
-            Shoot.shoot(gamepad1.right_trigger > 0);
+            if (gamepad1.xWasPressed()){islockDP = !islockDP;}
+            if (!islockDP){
+                if(gamepad1.dpad_up){Shoot.Feed(1);}
+                else if(gamepad1.dpad_down){Shoot.Feed(-1);}
+                else{Shoot.Feed(0);}
+            }
+
+            Shoot.Feed(gamepad1.right_trigger);
             // Show the elapsed game time and wheel power.
             telemetry.addData("Status", "Run Time: " + runtime.toString());
             telemetry.addLine(Omni.getTel() + " unlocked LT: " + unlockedLT + Shoot.getTel());
