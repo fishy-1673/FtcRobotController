@@ -1,4 +1,4 @@
-//Version 25-26 2.4.2
+//Version 25-26 2.5.8
 package org.firstinspires.ftc.teamcode.systems;
 
 
@@ -9,7 +9,7 @@ public class Indexer {
     private Servo Index;
     private Servo Ejector;
     private Double[] EPos = {0.45,0.0,0.90,};
-    private Double[] InPos = {};
+    private Double[] InPos = {0.5,0.97,0.075};
     public Indexer(HardwareMap hardwareMap) {//maybye define a local hardware map with  this.hardwareMap = hardwareMap;  ?
         Index = hardwareMap.get(Servo.class, "Is");
         Ejector = hardwareMap.get(Servo.class, "Es");

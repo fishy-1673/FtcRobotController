@@ -1,4 +1,4 @@
-//Version 25-26 2.3.1
+//Version 25-26 2.4.3
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.hardware.lynx.LynxModule;
@@ -68,7 +68,11 @@ public class OmniDrive extends LinearOpMode {
             if (gamepad2.dpad_up) Index.Index(0);
             else if (gamepad2.dpad_left) Index.Index(1);
             else if (gamepad2.dpad_right) Index.Index(2);
-            //adjust to add in a zone that the trigger will fire in, reduces sensitivity to be boolean
+
+            if (gamepad2.xWasPressed()) Index.Load(0);
+            else if (gamepad2.aWasPressed()) Index.Load(1);
+            else if (gamepad2.bWasPressed()) Index.Load(2);
+            //adjust to edit zone that the trigger will fire in, changes fire sensitivity
             Index.Eject(crt>0.85);
 
             // Show the elapsed game time and wheel power.
