@@ -2,6 +2,8 @@
 package org.firstinspires.ftc.teamcode.systems;
 
 
+import androidx.annotation.NonNull;
+
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
@@ -16,7 +18,7 @@ public class DriveTrain {
     private double frontRightPower = 0;
     private double backLeftPower = 0;
     private double backRightPower = 0;
-    public  DriveTrain(HardwareMap hardwareMap) {//maybye define a local hardware map with  this.hardwareMap = hardwareMap;  ?
+    public  DriveTrain(@NonNull HardwareMap hardwareMap) {//maybye define a local hardware map with  this.hardwareMap = hardwareMap;  ?
         FLD = hardwareMap.get(DcMotor.class, "FL");
         BLD = hardwareMap.get(DcMotor.class, "RL");
         FRD = hardwareMap.get(DcMotor.class, "FR");

@@ -2,6 +2,8 @@
 package org.firstinspires.ftc.teamcode.systems;
 
 
+import androidx.annotation.NonNull;
+
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -12,8 +14,10 @@ public class Intake {
     private DcMotor Intake;
     private CRServo IW;
     private double IntakeSpeed = 0;
-    public Intake(HardwareMap hardwareMap) {
+    /** @noinspection SpellCheckingInspection*/
+    public Intake(@NonNull HardwareMap hardwareMap) {
         Intake = hardwareMap.get(DcMotor.class, "Intake");
+        //noinspection SpellCheckingInspection
         IW = hardwareMap.get(CRServo.class,"CROS");
     }
 
@@ -32,7 +36,7 @@ public class Intake {
         }
     }
     public String getTel() {
-        return ("Intake Speed: " + IntakeSpeed + "");
+        return ("Intake Speed: " + IntakeSpeed);
     }
 
     }

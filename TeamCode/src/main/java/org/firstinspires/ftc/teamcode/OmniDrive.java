@@ -21,6 +21,7 @@ public class OmniDrive extends LinearOpMode {
     private ElapsedTime runtime = new ElapsedTime();
 
     boolean unlockedSP = true;
+    /** @noinspection SpellCheckingInspection*/
     boolean islockIS = false;
     double SP;
     double FS;

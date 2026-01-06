@@ -2,11 +2,11 @@
 package org.firstinspires.ftc.teamcode.systems;
 
 
-import com.qualcomm.robotcore.hardware.CRServo;
+import androidx.annotation.NonNull;
+
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.Servo;
 
 public class Launcher {
 
@@ -15,7 +15,7 @@ public class Launcher {
     private DcMotor S2;
 
     private double SP = 0;
-    public Launcher(HardwareMap hardwareMap) {
+    public Launcher(@NonNull HardwareMap hardwareMap) {
         //initialize the motors and servos so they can actually be used
         S1 = hardwareMap.get(DcMotor.class, "S1");
         S2 = hardwareMap.get(DcMotor.class, "S2");
