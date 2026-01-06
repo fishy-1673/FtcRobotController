@@ -75,9 +75,9 @@ public class OmniDrive extends LinearOpMode {
             //adjust to edit zone that the trigger will fire in, changes fire sensitivity
             Index.Eject(crt>0.85);
 
-            // Show the elapsed game time and wheel power.
+            // Show any telemetry deemed relevant
             telemetry.addData("Status", "Run Time: " + runtime.toString());
-            telemetry.addLine(Omni.getTel() + " unlocked LT: " + unlockedSP + Shoot.getTel()+Index.getTel()+Take.getTel());
+            telemetry.addLine(Omni.getTel() + " unlocked SP: " + unlockedSP + "locked InS: "+ islockIS +Shoot.getTel()+Index.getTel()+Take.getTel());
             telemetry.update();
         }
     }}

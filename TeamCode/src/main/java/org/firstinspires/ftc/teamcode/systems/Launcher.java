@@ -14,11 +14,7 @@ public class Launcher {
     private DcMotor S1;
     private DcMotor S2;
 
-    private CRServo LF;
-    private CRServo RF;
-    private int FS;
     private double SP = 0;
-    private String[] FeedStates = {"Antifeeding","Standby", "Feeding"};
     public Launcher(HardwareMap hardwareMap) {
         //initialize the motors and servos so they can actually be used
         S1 = hardwareMap.get(DcMotor.class, "S1");
@@ -39,8 +35,7 @@ public class Launcher {
 
 
     }
-    //carryover class from V1: originally used to feed balls from hopper into flywheel, now is a redundant spaggeti used for servo testing and auxillary servos we may need
-
+// used to be a few more functions here but all got migrated somwhere else
     public String getTel() {
         return (" Launcher power: " + SP );
     }
