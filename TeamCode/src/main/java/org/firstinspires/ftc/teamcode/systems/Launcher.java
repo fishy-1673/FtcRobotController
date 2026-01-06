@@ -1,4 +1,4 @@
-//Version 25-26 1.5.5
+//Version 25-26 2.0.1
 package org.firstinspires.ftc.teamcode.systems;
 
 
@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.Servo;
 
 public class Launcher {
 
@@ -15,41 +16,33 @@ public class Launcher {
 
     private CRServo LF;
     private CRServo RF;
-    private String FS = "";
+    private int FS;
     private double SP = 0;
+    private String[] FeedStates = {"Antifeeding","Standby", "Feeding"};
     public Launcher(HardwareMap hardwareMap) {
+        //initialize the motors and servos so they can actually be used
         S1 = hardwareMap.get(DcMotor.class, "S1");
         S2 = hardwareMap.get(DcMotor.class, "S2");
-        RF = hardwareMap.get(CRServo.class, "RF");
-        LF = hardwareMap.get(CRServo.class, "LF");
+
 
         S1.setDirection(DcMotor.Direction.REVERSE);
         S2.setDirection(DcMotorSimple.Direction.FORWARD);
     }
 
-
+    //takes a value and gives it to the flywheels
     public void speed(double s) {
-        // Combine the joystick requests for each axis-motion to determine each wheel's power.
-        // Set up a variable for each drive wheel to save the power level for telemetry.
+
         SP=s;
         S1.setPower(SP);
+        //adjusted value here because this motor is much faster and we want some backspin
         S2.setPower(SP*0.67);
 
 
     }
-    public void Feed(double s){
-        LF.setPower(s);
-        RF.setPower(s);
-        if (s>0){
-            FS = "Feeding";
-        } else if (s<0) {
-            FS = "Antifeeding";
-        } else{
-            FS = "Standby";
-        }
-    }
+    //carryover class from V1: originally used to feed balls from hopper into flywheel, now is a redundant spaggeti used for servo testing and auxillary servos we may need
+
     public String getTel() {
-        return (" Launcher power: " + SP  + " Feeding state: " + FS);
+        return (" Launcher power: " + SP );
     }
 
     }

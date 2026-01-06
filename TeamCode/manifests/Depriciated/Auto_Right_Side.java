@@ -27,12 +27,10 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.Depriciated;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.systems.DriveTrain;
@@ -57,9 +55,9 @@ import org.firstinspires.ftc.teamcode.systems.Launcher;
  * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list
  */
 
-@Autonomous(name="Auto left side", group="Robot")
+@Autonomous(name="Auto Right side", group="Robot")
 
-public class Auto_Left_Side extends LinearOpMode {
+public class Auto_Right_Side extends LinearOpMode {
 
     /* Declare OpMode members. */
 
@@ -138,7 +136,7 @@ public class Auto_Left_Side extends LinearOpMode {
         Shoot.shoot(false);
         Shoot.speed(0);
         runtime.reset();
-        omni.Drive(0,-1,0);
+        omni.Drive(0,1,0);
         while (opModeIsActive() && (runtime.seconds() < 0.5)) {
 
             telemetry.addData("driving", "Leg 2: %4.1f S Elapsed", runtime.seconds());
