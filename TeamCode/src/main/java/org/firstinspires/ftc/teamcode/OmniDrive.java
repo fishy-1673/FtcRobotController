@@ -1,4 +1,4 @@
-//Version 25-26 2.2.2
+//Version 25-26 2.3.1
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.hardware.lynx.LynxModule;
@@ -67,13 +67,13 @@ public class OmniDrive extends LinearOpMode {
             }
             if (gamepad2.dpad_up) Index.Index(0);
             else if (gamepad2.dpad_left) Index.Index(1);
-            else if (gamepad2.dpad_right) Index.Index(-1);
+            else if (gamepad2.dpad_right) Index.Index(2);
             //adjust to add in a zone that the trigger will fire in, reduces sensitivity to be boolean
             Index.Eject(crt>0.85);
 
             // Show the elapsed game time and wheel power.
             telemetry.addData("Status", "Run Time: " + runtime.toString());
-            telemetry.addLine(Omni.getTel() + " unlocked LT: " + unlockedSP + Shoot.getTel());
+            telemetry.addLine(Omni.getTel() + " unlocked LT: " + unlockedSP + Shoot.getTel()+Index.getTel()+Take.getTel());
             telemetry.update();
         }
     }}
