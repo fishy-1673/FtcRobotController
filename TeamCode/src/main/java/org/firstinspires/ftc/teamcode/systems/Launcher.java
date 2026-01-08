@@ -31,7 +31,7 @@ public class Launcher {
         SP=s;
         S1.setPower(SP);
         //adjusted value here because this motor is much faster and we want some backspin
-        S2.setPower(SP*0.67);
+        S2.setPower(SP*0.72);
 
 
     }
