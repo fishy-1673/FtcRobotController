@@ -58,6 +58,12 @@ public class OmniDrive extends LinearOpMode {
                 SP = clt;
                 Shoot.speed(SP);
             }
+            if (gamepad1.yWasPressed()){
+                Take.ROS();
+            }
+            if (gamepad1.yWasReleased()){
+                Take.OSS(true);
+            }
             if (gamepad2.yWasPressed()){
                 unlockedSP = !unlockedSP;
             }
@@ -74,7 +80,7 @@ public class OmniDrive extends LinearOpMode {
             else if (gamepad2.aWasPressed()) Index.Load(1);
             else if (gamepad2.bWasPressed()) Index.Load(2);
             //adjust to edit zone that the trigger will fire in, changes fire sensitivity
-            Index.Eject(crt>0.85);
+            Index.Eject(crt>0.75);
 
             // Show any telemetry deemed relevant
             telemetry.addData("Status", "Run Time: " + runtime.toString());

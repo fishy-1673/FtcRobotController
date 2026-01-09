@@ -6,7 +6,9 @@ import androidx.annotation.NonNull;
 
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.Servo;
 
 public class Intake {
 
@@ -19,6 +21,7 @@ public class Intake {
         Intake = hardwareMap.get(DcMotor.class, "Intake");
         //noinspection SpellCheckingInspection
         IW = hardwareMap.get(CRServo.class,"CROS");
+        IW.setDirection(DcMotorSimple.Direction.REVERSE);
     }
 
 
@@ -29,11 +32,14 @@ public class Intake {
     }
     public void OSS(boolean b){
         if (b){
-            IW.setPower(-1);
+            IW.setPower(1);
         }
         else{
             IW.setPower(0);
         }
+    }
+    public void ROS(){
+        IW.setPower(-1);
     }
     public String getTel() {
         return ("Intake Speed: " + IntakeSpeed);

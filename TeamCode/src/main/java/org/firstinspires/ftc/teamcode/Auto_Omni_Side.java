@@ -18,10 +18,11 @@ public class Auto_Omni_Side extends LinearOpMode {
     /* Declare OpMode members. */
 
     public void Wait(double time, String Telemetry){
-        runtime.reset();
-        while (opModeIsActive() && (runtime.seconds() < time)) {
+        ElapsedTime r = new ElapsedTime();
+        r.reset();
+        while (opModeIsActive() && (r.seconds() < time)) {
 
-            telemetry.addLine(Telemetry+"time: " + runtime.seconds());
+            telemetry.addLine(Telemetry+"time: " + r.seconds());
 
             telemetry.update();
         }
@@ -46,7 +47,7 @@ public class Auto_Omni_Side extends LinearOpMode {
         // Wait for the game to start (driver presses START)
         waitForStart();
 
-
+        Intake.OSS(true);
         // Step 1:  Drive forward for 3 seconds
         Shoot.speed(1);
         Index.Index(0);
@@ -59,7 +60,7 @@ public class Auto_Omni_Side extends LinearOpMode {
 
         runtime.reset();
         Index.Eject(true);
-        while (opModeIsActive() && (runtime.seconds() < 0.27)) {
+        while (opModeIsActive() && (runtime.seconds() < 0.5)) {
 
             telemetry.addData("shooting", "Leg 2: %4.1f S Elapsed", runtime.seconds());
             telemetry.update();
@@ -68,25 +69,25 @@ public class Auto_Omni_Side extends LinearOpMode {
 
 
         runtime.reset();
-        while (opModeIsActive() && (runtime.seconds() < 0.15)) {
+        while (opModeIsActive() && (runtime.seconds() < 0.5)) {
             telemetry.addData("wait", "Leg 3: %4.1f S Elapsed", runtime.seconds());
             telemetry.update();
         }
         Index.Index(1);
-        Wait(0.3,"Indexing");
+        Wait(0.5,"Indexing");
         Index.Eject(true);
-        Wait(0.2,"Shooting");
+        Wait(0.5,"Shooting");
         Index.Eject(false);
 
-        Wait(0.2,"Wait");
+        Wait(0.5,"Wait");
         Index.Index(2);
-        Wait(0.3, "Indexing");
+        Wait(0.5, "Indexing");
         Index.Eject(true);
-        Wait(0.2,"Shooting");
+        Wait(0.5,"Shooting");
         Index.Eject(false);
-        Wait(0.2,"wait");
+        Wait(0.5,"wait");
         omni.Drive(1,0,0);
-        Wait(1,"Driving");
+        Wait(0.3,"Driving");
         omni.Drive(0,0,0);
 
 

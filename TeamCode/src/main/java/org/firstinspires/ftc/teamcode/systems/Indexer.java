@@ -12,12 +12,10 @@ public class Indexer {
     private Servo Ejector;
     private Double[] EPos = {0.45,0.0,0.90,};
     private Double[] InPos = {0.5,0.97,0.075};
-    public Indexer(@NonNull HardwareMap hardwareMap) {//maybye define a local hardware map with  this.hardwareMap = hardwareMap;  ?
+    public Indexer(@NonNull HardwareMap hardwareMap) {
         Index = hardwareMap.get(Servo.class, "Is");
         Ejector = hardwareMap.get(Servo.class, "Es");
     }
-
-
     public void Index(int pos) {
         if (pos<4&&pos>=0) Index.setPosition(EPos[pos]);
     }
