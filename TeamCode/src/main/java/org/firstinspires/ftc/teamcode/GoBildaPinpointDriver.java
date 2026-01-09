@@ -405,6 +405,7 @@ public class GoBildaPinpointDriver extends I2cDeviceSynchDevice<I2cDeviceSynchSi
      * @param xEncoder FORWARD or REVERSED, X (forward) pod should increase when the robot is moving forward
      * @param yEncoder FORWARD or REVERSED, Y (strafe) pod should increase when the robot is moving left
      */
+
     public void setEncoderDirections(EncoderDirection xEncoder, EncoderDirection yEncoder){
         if (xEncoder == EncoderDirection.FORWARD){
             writeInt(Register.DEVICE_CONTROL,1<<5);
